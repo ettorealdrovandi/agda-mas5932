@@ -1,0 +1,4 @@
+name: agda-unimath
+depend: standard-library
+include: src
+
