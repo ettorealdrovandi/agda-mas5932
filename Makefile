@@ -47,11 +47,11 @@ agda_md_dir := _md
 
 # See "ordered targets" in the info page for the explanation of '|'
 $(agda_md_dir)/mdgen: Everything.agda | $(agda_md_dir)
-	agda --html --html-dir=$(agda_md_dir) --html-highlight=auto -i$(SRC) Everything.agda
+	agda --html --html-dir=$(agda_md_dir) --html-highlight=auto -i. Everything.agda
 	touch $(agda_md_dir)/mdgen
 
 Everything.agda: $(agda_lagda_md)
-	find . -name  '*.lagda.md' | sed -e 's/\.lagda\.md$$//' -e 's|^\./src/|import\ |' | sort > Everything.agda
+	find . -name  '*.lagda.md' | sed -e 's/\.lagda\.md$$//' -e 's|^\./src/|import\ |' -e 's|/|.|g' | sort > Everything.agda
 
 $(agda_md_dir):
 	mkdir -p $(agda_md_dir)
