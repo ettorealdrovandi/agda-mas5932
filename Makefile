@@ -84,7 +84,7 @@ hott.pdf: hott.dot
 	dot -Tpdf $< > $(patsubst %.dot,%.pdf,$<)
 
 hott.dot: Everything.agda
-	agda --dependency-graph=$@ -i$(SRC) Everything.agda
+	agda --dependency-graph=$@ -i. Everything.agda
 
 
 ################################################################################
