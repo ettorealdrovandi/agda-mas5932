@@ -1,4 +1,9 @@
 Everything.agda
+_md/
+html/
+hott.dot
+hott.pdf
+hott.svg
 .DS_Store
 *.agdai
 *~
