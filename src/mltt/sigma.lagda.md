@@ -4,6 +4,8 @@ subtitle: "Martin-Löf Type Theory"
 description: "A minimal Type Theory in Martin-Löf style: Sigma types"
 ---
 
+### Contents {#top}
+
 1. [Σ-Types](#sigma)
    1. [Induction and recursion principles](#indrec)
 1. [Cartesian Products](#cartesian)
