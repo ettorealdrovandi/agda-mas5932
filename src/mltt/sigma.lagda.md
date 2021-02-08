@@ -8,7 +8,7 @@ description: "A minimal Type Theory in Martin-Löf style: Sigma types"
    1. [Induction and recursion principles](#indrec)
 1. [Cartesian Products](#cartesian)
    1. [Induction and recursion principles](#indreccart)
-   1. [Universal properties](#universal_cart_sigma)
+
 
 --------------------------------------------------------------------------------
 
