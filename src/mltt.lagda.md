@@ -13,8 +13,6 @@ chapter: 2
    1. [The One-Point Type](#onepoint)
    1. [Sum Types (Disjoint Union)](#sumtypes)
 1. [Σ-Types](#sigma)
-   1. [Cartesian Products](#cartesian)
-   1. [Universal properties](#universal_cart_sigma)
 1. [Π-Types](#pi)
    1. [Identity function and function composition](#functions)
    1. [Universal property for products and pullbacks](#pullback)
