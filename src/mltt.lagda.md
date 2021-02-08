@@ -12,7 +12,6 @@ chapter: 2
    1. [The Empty Type](#empty)
    1. [The One-Point Type](#onepoint)
    1. [Sum Types (Disjoint Union)](#sumtypes)
-   1. [Booleans](#booleans)
 1. [Σ-Types](#sigma)
    1. [Cartesian Products](#cartesian)
    1. [Universal properties](#universal_cart_sigma)
@@ -72,107 +71,6 @@ open import mltt.sum public
 
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 
-#### Booleans (again) {#booleans}
-
-A short application of the sum type is to define the <span style="color: teal;">Booleans</span> in another way—as a sum of the unit type with itself.
-
-```agda
-𝟚 : Set
-𝟚 = 𝟙 + 𝟙
------
-pattern ₀ = inl *
-pattern ₁ = inr *
-```
-Essentially, we have used a Type equality rule. The [pattern](https://agda.readthedocs.io/en/v2.6.1/language/pattern-synonyms.html) statements allows us to do pattern matching on symbols, rather than inl * (or inr *).
-
-Of course, you can start doing things like:
-
-```agda
-
-𝟛 : Set
-𝟛 = 𝟙 + 𝟚
-
-𝟜 : Set
-𝟜 = 𝟙 + 𝟛
-```
-
-etc. But then, of course, why not
-
-```agda
-𝟛' : Set
-𝟛' = 𝟚 + 𝟙
-
-𝟜' : Set
-𝟜' = 𝟚 + 𝟚
-
-𝟜'' : Set
-𝟜'' = 𝟛' + 𝟙
-```
-With the problem of figuring out, for example,  whether and in what sense `𝟛 ≡ 𝟛'`, `𝟜 ≡ 𝟜'`, etc. We will have more to say about this in a short while.
-
-Meanwhile, as an <span style="color: fuchsia">exercise</span>, prove that there exist functions
-
-    𝟛-to-𝟛' : 𝟛 → 𝟛'
-    𝟛-to-𝟛' i = {!!}
-<!--
-    𝟛-to-𝟛' ₀ = inl ₀
-    𝟛-to-𝟛' (inr ₀) = inl ₁
-    𝟛-to-𝟛' (inr ₁) = inr *
--->
-    𝟛'-to-𝟛 : 𝟛' → 𝟛
-    𝟛'-to-𝟛 j = {!!}
-<!--
-    𝟛'-to-𝟛 (inl ₀) = inl *
-    𝟛'-to-𝟛 (inl ₁) = inr ₀
-    𝟛'-to-𝟛 (inr *) = inr ₁
--->
-
-Induction and recursion will of course be inherited from the abstract defition of sum type, but it is a good exercise to also try a direct definition.
-
-The direct induction principle:
-```agda
--- induction and recursion: direct definition
-𝟚-induction : ∀ {ℓ} (P : 𝟚 → Set ℓ) → P ₀ → P ₁ → (i : 𝟚) → P i
-𝟚-induction P p₀ p₁ ₀ = p₀
-𝟚-induction P p₀ p₁ ₁ = p₁
-```
-
-whereas the inherited one is:
-```agda
--- induction and recursion: definition from +induction
-𝟚-induction' : ∀ {ℓ} (P : 𝟚 → Set ℓ) → P ₀ → P ₁ → (i : 𝟚) → P i
-𝟚-induction' P p₀ p₁ = +induction P 
-                           (𝟙-induction (λ x → P (inl x)) p₀) 
-                           (𝟙-induction (λ x → P (inr x)) p₁) 
-```
-
-and of course we can pick either to write out the recursion statement:
-```agda
--- recursion
-𝟚-recursion : ∀ {ℓ} (P : Set ℓ) → P → P → 𝟚 → P
-𝟚-recursion P = 𝟚-induction (λ _ → P)
-```
-
-Intuitively, a type dependent on `𝟚` should correspond to a pair of types. This is what you get if in `(x : 𝟚) ⊢ P x` above you instantiate the free variable: it is either `P ₀` or `P ₁ : Set ℓ`. Conversely, 
-from a pair of types we can form a dependent one parametrized by 𝟚. The intuition translates directly into a direct definition:
-
-```agda
-𝟚-to-dep' : ∀ {ℓ} (A B : Set ℓ) → 𝟚 → Set ℓ
-𝟚-to-dep' A B ₀ = A
-𝟚-to-dep' A B ₁ = B
-
-```
-
-On the other hand, since `A B : Set ℓ`, i.e. they are *terms* of Type `Set ℓ`, this can be done via 𝟚-recursion, as explained in the HoTT book, Ch. I §1.8.
-
-```agda
-𝟚-to-dep : ∀ {ℓ} (A B : Set ℓ) → 𝟚 → Set ℓ
-𝟚-to-dep {ℓ} A B = 𝟚-recursion (Set ℓ) A B
-infix 40 _⋆_
-_⋆_ = 𝟚-to-dep
-```
-<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
----
 
 ### Σ-Types {#sigma}
 
