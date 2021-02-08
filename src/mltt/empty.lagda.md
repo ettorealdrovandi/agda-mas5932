@@ -14,7 +14,7 @@ open import level renaming (zero to lzero; suc to lsuc) public
 data 𝟘 : Set where  --complete definition, no constructor
 ```
 
-Induction and recursion principles for 𝟘:
+#### Induction and recursion principles for 𝟘:
 
 ```agda
 𝟘-induction : ∀ {ℓ} (P : 𝟘 → Set ℓ) → (x : 𝟘) → P x
@@ -32,12 +32,16 @@ Induction and recursion principles for 𝟘:
 𝟘-recursion'' ()
 ```
 
+#### Categorical properties
+
 There is a unique function from 𝟘 to any type
 
 ```agda
 !𝟘 : ∀ {ℓ} {B : Set ℓ} → 𝟘 → B
 !𝟘 = 𝟘-recursion''
 ```
+
+#### Emptiness
 
 The empty type can be used as a predicate to express emptiness…
 ```agda
