@@ -24,7 +24,7 @@ record 𝟙 : Set where
   constructor *
 ```
 
-Induction and recursion principles for 𝟙:
+#### Induction and recursion principles
 
 ```agda
 𝟙-induction : ∀ {ℓ} (P : 𝟙 → Set ℓ) → P * → (x : 𝟙) → P x
@@ -42,7 +42,9 @@ Induction and recursion principles for 𝟙:
 𝟙-rec {ℓ} {B} = 𝟙-recursion {ℓ} B
 ```
 
-The categorical property of `𝟙` is that there is a unique function from any type to it:
+#### Categorical property
+
+There is a unique function from any type to 𝟙:
 
 ```agda
 !𝟙 : ∀ {ℓ} {B : Set ℓ} → B → 𝟙
