@@ -66,49 +66,10 @@ open import mltt.unit public
 
 #### Sum Types (Disjoint Union) {#sumtypes}
 
-We denote the disjoint union of two types with a `_+_`. This is our first true example of forming new types from old.
-
 ```agda
--- Can't use ⊔ since it is taken by universe upper bound
-data _+_ {ℓ ℓ' : Level} (A : Set ℓ) (B : Set ℓ') : Set (ℓ ⊔ ℓ') where
-  inl : A → A + B
-  inr : B → A + B
+open import mltt.sum public
 ```
 
-So the *canonical terms* of `A + B` are either of the form `inl a` or `inr b`, where `a : A` and `b : B`.  Also, we are saying that, depending on the respective levels, the resulting type `A + B` has level `ℓ ⊔ ℓ'`, the upper bound of the two.
-
-
-The induction or elimination for the sum type states that to prove that `P` holds for all terms in `A + B` it is enough to prove that `(a : A) ⊢ P (inl a)` and  `(b : B) ⊢ P (inr b)`:
-```agda
-+induction : ∀ {ℓ ℓ' ℓ''} {A : Set ℓ} {B : Set ℓ'} (P : A + B → Set ℓ'') →
-             ((a : A) → P (inl a)) →
-             ((b : B) → P (inr b)) →
-             (ab : A + B) → P ab
-+induction P f g (inl a) = f a
-+induction P f g (inr b) = g b
-```
-
-We want to express the recursion in terms of the above induction principle. We want to define by calculating `+induction` on the constant family on `A+B` with values in `C`. This family is `λ (_ : A+B) → C`, where we put an underscore because the actual name of the term does not matter.
-
-```agda
-+recursion : ∀ {ℓ ℓ' ℓ''} {A : Set ℓ} {B : Set ℓ'} {C : Set ℓ''} →
-           (A → C) → (B → C) → A + B → C
-```
-but notice that the variables for the types are implicit, so, in order to be able to use `+induction`, which depends on type family *explicitly*, we have to render those variable explicit. This is accomplished by surrounding them by braces
-```agda
-+recursion {C = C} = +induction (λ _ → C)  --Alternatively: +recursion {ℓ} {ℓ'} {ℓ''} {A} {B} {C}  = +induction (λ _ → C)
-```
-
-Note that `+recursion` expresses the coproduct universal property for the sum. When the type eliminator (or the induction principle) expresses a universal property, we say that type is *positive.* Positive types have eliminators that express universal properties "going out" of the type.
-
-A direct definition of the recursion is evidently possible, by providing the same proof as for the dependent case.
-
-```agda
-+recursion' : ∀ {ℓ ℓ' ℓ''} {A : Set ℓ} {B : Set ℓ'} {C : Set ℓ''} →
-            (A → C) → (B → C) → A + B → C
-+recursion' f g (inl a) = f a
-+recursion' f g (inr b) = g b
-```
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 
 #### Booleans (again) {#booleans}
