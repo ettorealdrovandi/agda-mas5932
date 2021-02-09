@@ -8,6 +8,7 @@ description: "Basic defintions on functions"
 
 1. [Functions](#functions)
 1. [Convenience](#convenience)
+
 --------------------------------------------------
 
 ```agda
