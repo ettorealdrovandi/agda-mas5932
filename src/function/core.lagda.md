@@ -60,8 +60,9 @@ ev' x f = f x
 ev : ∀ {ℓ ℓ'} {A : Set ℓ} {E : A → Set ℓ'} → ((x : A) → E x) → (x : A) → E x
 ev f x = f x
 ```
-This allows to recover the type of a term
+This allows to recover the type of a term. 
 ```agda
+---FIXME. This particular fragment needs to be moved in a general notation section
 type-of : ∀{ℓ} {A : Set ℓ} → A → Set ℓ
 type-of {ℓ} {A} x = A
 ```
