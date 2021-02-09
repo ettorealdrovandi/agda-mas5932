@@ -36,8 +36,17 @@ agda_lagda_md := $(shell find $(SRC) -name '*.lagda.md')
 ################################################################################
 #
 
-.PHONY: all htmlgen codegen graph
+.PHONY: test all htmlgen codegen graph
 all : htmlgen codegen graph
+
+################################################################################
+# Test
+
+test: Everything.agda
+	agda -i. Everything.agda
+
+Everything.agda: $(agda_lagda_md)
+	find . -name  '*.lagda.md' | sed -e 's/\.lagda\.md$$//' -e 's|^\./src/|import\ |' -e 's|/|.|g' | sort > Everything.agda
 
 ################################################################################
 # Generate HTML
@@ -49,9 +58,6 @@ agda_md_dir := _md
 $(agda_md_dir)/mdgen: Everything.agda | $(agda_md_dir)
 	agda --html --html-dir=$(agda_md_dir) --html-highlight=auto -i. Everything.agda
 	touch $(agda_md_dir)/mdgen
-
-Everything.agda: $(agda_lagda_md)
-	find . -name  '*.lagda.md' | sed -e 's/\.lagda\.md$$//' -e 's|^\./src/|import\ |' -e 's|/|.|g' | sort > Everything.agda
 
 $(agda_md_dir):
 	mkdir -p $(agda_md_dir)
