@@ -14,8 +14,6 @@ chapter: 2
    1. [Sum Types (Disjoint Union)](#sumtypes)
 1. [Σ-Types](#sigma)
 1. [Π-Types](#pi)
-   1. [Identity function and function composition](#functions)
-   1. [Universal property for products and pullbacks](#pullback)
 1. [Identity Types](#id)
    1. [Path Induction](#pathinduction)
    1. [Basic Operations with Identity Types](#basicop)
