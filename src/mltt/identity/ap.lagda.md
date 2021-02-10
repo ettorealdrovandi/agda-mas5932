@@ -15,6 +15,8 @@ open import mltt.identity-types
 open import mltt.identity.path-composition
 ```
 
+### Lemmas on applicative (ap) function
+
 ```agda
 module ap-lemmas where
 
