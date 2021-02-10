@@ -10,7 +10,6 @@ description: "A minimal Type Theory in Martin-Löf style: Identity types. Path c
 module mltt.identity.path-composition where
 
 open import level renaming (zero to lzero; suc to lsuc)
-open import function.core
 open import mltt.identity-types
 ```
 
