@@ -21,7 +21,7 @@ description: "A minimal Type Theory in Martin-Löf style: Identity types"
 ```agda
 {-# OPTIONS --without-K --safe #-}
 
-module mltt.identity where
+module mltt.identity-types where
 
 open import level renaming (zero to lzero; suc to lsuc)
 open import mltt.pi
@@ -52,6 +52,9 @@ lhs {ℓ} {A} {x} {y} p = x
 rhs : ∀{ℓ} {A : Set ℓ} {x y : A} → x ≡ y → A
 rhs {ℓ} {A} {x} {y} p = y
 ```
+
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
 
 ### Path induction {#pathinduction}
 
@@ -87,6 +90,9 @@ rhs {ℓ} {A} {x} {y} p = y
 --TODO: ℍ-to-ℍ'
 ```
 
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
+
 ### Transport {#transport}
 
 ```agda
@@ -108,6 +114,9 @@ transport-agreement : ∀ {ℓ ℓ'} {A : Set ℓ} (P : A → Set ℓ') {x y : A
 transport-agreement P refl = idp (id)
 ```
 
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
+
 ### Applicative {#ap}
 
 ```agda
@@ -127,6 +136,9 @@ ap-agreement : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {x y : A} (f : A → 
 ap-agreement f refl = idp refl
 ```
 
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
+
 ### Inversion of identifications {#inversion}
 
 ```agda
@@ -140,6 +152,9 @@ refl ⁻¹ = refl
 -- for symmetry
 ≡-inv = _⁻¹
 ```
+
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
 
 ### Composition of identifications {#composition}
 
@@ -168,6 +183,9 @@ p ◾′ refl = p
 ◾-agreement refl refl = refl
 ```
 
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
+
 ### Reasoning with equality {#reasoning}
 
 ```agda
@@ -183,3 +201,6 @@ module ≡-Reasoning {ℓ : Level} {A : Set ℓ}  where
   _∎ : (x : A) → x ≡ x
   x ∎ = idp x
 ```
+
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
