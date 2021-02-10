@@ -103,16 +103,17 @@ hott.dot: Everything.agda
 agda_illiterate := agda
 agda_agda := $(subst $(SRC),$(agda_illiterate),$(patsubst %.lagda.md,%.agda,$(agda_lagda_md)))
 
-codegen: $(agda_agda)
+# codegen: $(agda_agda)
 
-$(agda_agda): | $(agda_illiterate)
+##$(agda_agda): | $(agda_illiterate)
 
-$(agda_illiterate):
-	mkdir $(agda_illiterate)
+##$(agda_illiterate)/%.agda: $(SRC)/%.lagda.md copyright.txt
+#$(agda_agda) : $(agda_lagda_md) copyright.txt | $(agda_illiterate)
+##	awk '/```agda$$/,/```$$/' $< |sed -e 's/^```.*//' > $@
+#	sed -e '1 r copyright.txt' -e '/^```agda$$/,/^```$$/!d' -e 's/^```.*//' $< > $@
 
-$(agda_illiterate)/%.agda: $(SRC)/%.lagda.md copyright.txt
-#	awk '/```agda$$/,/```$$/' $< |sed -e 's/^```.*//' > $@
-	sed -e '1 r copyright.txt' -e '/^```agda$$/,/^```$$/!d' -e 's/^```.*//' $< > $@
+# $(agda_illiterate):
+# 	mkdir $(agda_illiterate)
 
 ################################################################################
 # Cleaning and tidying targets
@@ -132,14 +133,14 @@ clean: clean-md-dir clean-html-dir clean-graph
 	-rmdir $(agda_md_dir)
 	-rmdir $(HTML)
 
-clean-illiterate:
-	-rm $(agda_illiterate)/*.agda $(agda_illiterate)/*.agdai
+# clean-illiterate:
+# 	-rm $(agda_illiterate)/*.agda $(agda_illiterate)/*.agdai
 
 # this doesn't clear the _build/ interface files
 clean-interface:
 	-rm *.agdai $(agda_illiterate)/*.agdai
 
-clean-all: clean-md-dir clean-html-dir clean-interface clean-illiterate
+clean-all: clean-md-dir clean-html-dir #clean-interface clean-illiterate
 	-rmdir $(agda_md_dir)
 	-rmdir $(HTML)
 	-rmdir $(agda_illiterate)
