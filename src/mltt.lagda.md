@@ -61,6 +61,14 @@ open import mltt.unit public
 open import mltt.sum public
 ```
 
+**FIXME** It probably makes sense to re-export the type 𝟚 from here, again to
+avoid 'out of scope' errors from other modules while the library is
+being reorganized.
+
+```agda
+open import types.two public
+```
+
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 ---
 
@@ -75,7 +83,12 @@ open import mltt.sigma public
 
 ### Π-Types {#pi}
 
+It is convenient to re-export the core function module from here, to
+avoid 'out of scope' errors from other modules, from now. This will
+probably be fixed later, when the trimming process is complete.
+
 ```agda
+open import function.core public
 open import mltt.pi public
 ```
 
