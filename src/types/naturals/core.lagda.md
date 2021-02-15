@@ -6,7 +6,9 @@ description: "Core: definitions, and operations"
 
 ### Contents {#top}
 
+1. [Main](#main)
 1. [Induction and recursion](#indrec)
+1. [Operations](#ops)
 
 --------------------------------------------------
 
@@ -16,8 +18,12 @@ description: "Core: definitions, and operations"
 module types.naturals.core where
 
 open import level renaming (zero to lzero; suc to lsuc)
+```
 
 
+### Main {#main}
+
+```agda
 data ℕ : Set where
   zero : ℕ
   suc : ℕ → ℕ
@@ -42,21 +48,21 @@ data ℕ : Set where
 ### Operations {#ops}
 
 ```agda
-infix 20 _+ℕ_
-infix 21 _*ℕ_
-infix 22 _^ℕ_
+infix 20 _+_
+infix 21 _*_
+infix 22 _^_
   
-_+ℕ_ : ℕ → ℕ → ℕ
-zero +ℕ n = n
-suc m +ℕ n = suc (m +ℕ n)
+_+_ : ℕ → ℕ → ℕ
+zero + n = n
+suc m + n = suc (m + n)
 
-_*ℕ_ : ℕ → ℕ → ℕ
-zero *ℕ n = zero
-suc m *ℕ n = m *ℕ n +ℕ n
+_*_ : ℕ → ℕ → ℕ
+zero * n = zero
+suc m * n = m * n + n
 
-_^ℕ_ : ℕ → ℕ → ℕ
-m ^ℕ zero = 1
-m ^ℕ suc n = m *ℕ m ^ℕ n
+_^_ : ℕ → ℕ → ℕ
+m ^ zero = 1
+m ^ suc n = m * m ^ n
 ```
 
 The operations can be defined using the iteration structure
@@ -64,22 +70,22 @@ The operations can be defined using the iteration structure
 private
   module ℕ-ops' where
 
-    infix 20 _+'ℕ_
-    infix 21 _*'ℕ_
+    infix 20 _+'_
+    infix 21 _*'_
 
-    _+'ℕ_ : ℕ → ℕ → ℕ
-    m +'ℕ n = h m where
+    _+'_ : ℕ → ℕ → ℕ
+    m +' n = h m where
           h : ℕ → ℕ 
           h = ℕ-iteration n suc
 
-    _*'ℕ_ : ℕ → ℕ → ℕ
-    m *'ℕ n = h m where
+    _*'_ : ℕ → ℕ → ℕ
+    m *' n = h m where
        h : ℕ → ℕ
-       h = ℕ-iteration 0 (_+ℕ n)
+       h = ℕ-iteration 0 (_+' n)
 
-    _^'ℕ_ : ℕ → ℕ → ℕ
-    m ^'ℕ n = h m
+    _^'_ : ℕ → ℕ → ℕ
+    m ^' n = h m
       where
         h : ℕ → ℕ
-        h = ℕ-iteration 1 (_*ℕ n)
+        h = ℕ-iteration 1 (_*' n)
 ```
