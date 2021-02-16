@@ -29,6 +29,11 @@ data ℕ : Set where
   suc : ℕ → ℕ
 
 {-# BUILTIN NATURAL ℕ #-}
+
+
+pred : ℕ → ℕ
+pred zero = zero
+pred (suc n) = n
 ```
 
 ### Induction and recursion {#indrec}
