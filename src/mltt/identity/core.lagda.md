@@ -21,7 +21,7 @@ description: "A minimal Type Theory in Martin-Löf style: Identity types"
 ```agda
 {-# OPTIONS --without-K --safe #-}
 
-module mltt.identity-types where
+module mltt.identity.core where
 
 open import level renaming (zero to lzero; suc to lsuc)
 open import mltt.pi
