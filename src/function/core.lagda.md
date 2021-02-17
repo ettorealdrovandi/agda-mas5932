@@ -16,7 +16,7 @@ description: "Basic defintions on functions"
 
 module function.core where
 
-open import level renaming (zero to lzero; suc to lsuc) public
+open import level renaming (zero to lzero; suc to lsuc) 
 ```
 
 ### Functions {#functions}
@@ -59,6 +59,10 @@ ev' x f = f x
 
 ev : ∀ {ℓ ℓ'} {A : Set ℓ} {E : A → Set ℓ'} → ((x : A) → E x) → (x : A) → E x
 ev f x = f x
+
+-- A Haskeller version of the evaluation
+_$_ : ∀ {ℓ ℓ'} {A : Set ℓ} {E : A → Set ℓ'} → ((x : A) → E x) → (x : A) → E x
+f $ x = f x
 ```
 This allows to recover the type of a term. 
 ```agda
