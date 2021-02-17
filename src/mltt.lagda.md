@@ -87,7 +87,7 @@ open import mltt.sigma public
 reorganized.
 
 ```agda
-open import function.core public
+open import function public
 open import mltt.pi public
 ```
 
