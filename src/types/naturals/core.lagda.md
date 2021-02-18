@@ -18,6 +18,7 @@ description: "Core: definitions, and operations"
 module types.naturals.core where
 
 open import level renaming (zero to lzero; suc to lsuc)
+open import mltt.identity-types using (_≡_ ; ap)
 ```
 
 
@@ -34,6 +35,9 @@ data ℕ : Set where
 pred : ℕ → ℕ
 pred zero = zero
 pred (suc n) = n
+
+suc-inj : {m n : ℕ} → suc m ≡ suc n → m ≡ n
+suc-inj = ap pred 
 ```
 
 ### Induction and recursion {#indrec}
