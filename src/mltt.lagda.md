@@ -97,7 +97,7 @@ open import mltt.pi public
 ### Identity Types {#id}
 
 ```agda
-open import mltt.identity-types public
+open import mltt.identity public
 ```
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 ---
