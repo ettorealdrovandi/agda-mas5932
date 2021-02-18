@@ -193,6 +193,10 @@ module ≡-Reasoning {ℓ : Level} {A : Set ℓ}  where
 
   infix 3 _∎
   infixr 2 _≡⟨_⟩_
+  infix 1 begin_
+
+  begin_ : ∀ {x y : A} → x ≡ y → x ≡ y
+  begin p = p
   
   _≡⟨_⟩_ : (x : A) {y z : A} →
            x ≡ y → y ≡ z → x ≡ z
