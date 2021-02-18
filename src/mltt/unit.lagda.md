@@ -10,7 +10,7 @@ description: "A minimal Type Theory in Martin-Löf style: Unit type"
 
 module mltt.unit where
 
-open import level renaming (zero to lzero; suc to lsuc) public
+open import level
 ```
 
 We could define this as a data type as

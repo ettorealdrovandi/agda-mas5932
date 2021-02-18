@@ -16,7 +16,7 @@ description: "Basic defintions on functions"
 
 module function.core where
 
-open import level renaming (zero to lzero; suc to lsuc) 
+open import level
 ```
 
 ### Functions {#functions}

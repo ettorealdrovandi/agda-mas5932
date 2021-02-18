@@ -9,7 +9,7 @@ description: "A minimal Type Theory in Martin-Löf style: Identity types. Lemmma
 
 module mltt.identity.ap where
 
-open import level renaming (zero to lzero; suc to lsuc)
+open import level
 open import function.core
 open import mltt.identity.core
 open import mltt.identity.path-composition

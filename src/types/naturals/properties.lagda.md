@@ -14,7 +14,7 @@ description: "Properties: elementary theorems"
 
 module types.naturals.properties where
 
-open import level renaming (zero to lzero; suc to lsuc)
+open import level
 open import function
 open import mltt.identity.core 
 open import types.naturals.core

@@ -4,6 +4,7 @@ subtitle: "Martin-Löf Type Theory, identity types"
 description: "A minimal Type Theory in Martin-Löf style: interface for Identity types"
 ---
 
+---
 
 ```agda
 {-# OPTIONS --without-K --safe #-}

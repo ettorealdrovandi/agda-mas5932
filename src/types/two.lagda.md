@@ -10,7 +10,7 @@ description: "Disjoint union (sum) of two unit types: the type with two canonica
 
 module types.two where
 
-open import level renaming (zero to lzero; suc to lsuc)
+open import level
 open import mltt.unit
 open import mltt.sum
 ```

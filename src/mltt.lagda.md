@@ -27,7 +27,7 @@ module mltt where
 ### Universes {#universes}
 
 ```agda
-open import level renaming (zero to lzero; suc to lsuc) public
+open import level
 ```
 For the future, define one more level
 ```agda

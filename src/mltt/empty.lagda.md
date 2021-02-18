@@ -9,7 +9,7 @@ description: "A minimal Type Theory in Martin-Löf style: Empty type"
 
 module mltt.empty where
 
-open import level renaming (zero to lzero; suc to lsuc) public
+open import level
 
 data 𝟘 : Set where  --complete definition, no constructor
 ```

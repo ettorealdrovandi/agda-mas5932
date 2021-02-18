@@ -19,7 +19,7 @@ description: "A minimal Type Theory in Martin-Löf style: Sigma types"
 
 module mltt.sigma where
 
-open import level renaming (zero to lzero; suc to lsuc) public
+open import level
 ```
 
 ### Σ-Types {#sigma}

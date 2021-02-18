@@ -9,7 +9,7 @@ description: "Miscellaneous definitions and utilities"
 
 module function.general-notation where
 
-open import level renaming (zero to lzero; suc to lsuc) 
+open import level
 open import function.core
 open import mltt.identity.core
 ```

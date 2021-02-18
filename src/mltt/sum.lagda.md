@@ -10,7 +10,7 @@ description: "A minimal Type Theory in Martin-Löf style: sum types, aka disjoin
 
 module mltt.sum where
 
-open import level renaming (zero to lzero; suc to lsuc) public
+open import level
 ```
 
 ```agda

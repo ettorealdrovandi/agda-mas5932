@@ -14,7 +14,7 @@ description: "A minimal Type Theory in Martin-Löf style: Pi types"
 
 module mltt.pi where
 
-open import level renaming (zero to lzero; suc to lsuc)
+open import level
 open import mltt.sigma
 ```
 

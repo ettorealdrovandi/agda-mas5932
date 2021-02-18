@@ -23,7 +23,7 @@ description: "A minimal Type Theory in Martin-Löf style: Identity types"
 
 module mltt.identity.core where
 
-open import level renaming (zero to lzero; suc to lsuc)
+open import level
 open import mltt.pi
 open import function.core
 ```

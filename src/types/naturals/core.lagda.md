@@ -17,8 +17,8 @@ description: "Core: definitions, and operations"
 
 module types.naturals.core where
 
-open import level renaming (zero to lzero; suc to lsuc)
-open import mltt.identity-types using (_≡_ ; ap)
+open import level
+open import mltt.identity using (_≡_ ; ap)
 ```
 
 

@@ -8,7 +8,7 @@ description: "Alternative universe name"
 
 module mltt.universe where
 
-open import level renaming (zero to lzero; suc to lsuc) public
+open import level public
 
 𝕌 : (ℓ : Level) → Set (lsuc ℓ)
 𝕌 = λ ℓ → Set ℓ
