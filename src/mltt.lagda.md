@@ -29,11 +29,6 @@ module mltt where
 ```agda
 open import level
 ```
-For the future, define one more level
-```agda
-1ℓ : Level
-1ℓ = lsuc 0ℓ
-```
 
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 ---

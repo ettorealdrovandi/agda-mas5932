@@ -34,6 +34,9 @@ open Lift public
 0ℓ : Level
 0ℓ = lzero
 
+1ℓ : Level
+1ℓ = lsuc 0ℓ
+
 levelOfType : ∀ {a} → Set a → Level
 levelOfType {a} _ = a
 
