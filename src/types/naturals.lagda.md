@@ -14,4 +14,5 @@ module types.naturals where
 
 open import types.naturals.core public
 open import types.naturals.properties public
+open import types.naturals.order public
 ```
