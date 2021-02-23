@@ -1,6 +1,6 @@
 ---
 title: "Negation"
-description: "Definitions using ¬"
+description: "Definitions using ¬ and ≢"
 ---
 
 ```agda
