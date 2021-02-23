@@ -22,4 +22,3 @@ left-cancellable f = {x y : domain f} → f x ≡ f y → x ≡ y
 -- British v. American
 left-cancelable = left-cancellable
 ```
-
