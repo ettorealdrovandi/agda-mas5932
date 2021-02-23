@@ -40,16 +40,10 @@ decide {ℓ} {A} {inr x} = x
 ```agda
 open import logic.negation
 open import function.id-to-fun
-open import types.two
 
 one-is-not-zero : 𝟙 ≢ 𝟘
 one-is-not-zero = λ p → Id→Fun p *
 
-₁-is-not-₀ : ₁ ≢ ₀
-₁-is-not-₀ p = one-is-not-zero q
-  where
-    q : 𝟙 ≡ 𝟘
-    q = ap (𝟚-to-dep 𝟘 𝟙) p
 
 inl-is-not-inr : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'}
                           {a : A} {b : B} →
@@ -66,15 +60,4 @@ inl-is-not-inr' : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'}
                            {a : A} {b : B} →
                            inl a ≢ inr b
 inl-is-not-inr' = λ ()
-
-₁-is-not-₀' : ₁ ≢ ₀
-₁-is-not-₀' = ≢-inv (inl-is-not-inr {A = 𝟙} {B = 𝟙} {*} {*})
-```
-
-```agda
-𝟚-decidable-equality : decidable-equality 𝟚
-𝟚-decidable-equality ₀ ₀ = inl (idp ₀)
-𝟚-decidable-equality ₀ ₁ = inr (≢-inv ₁-is-not-₀)
-𝟚-decidable-equality ₁ ₀ = inr (₁-is-not-₀)
-𝟚-decidable-equality ₁ ₁ = inl (idp ₁)
 ```
