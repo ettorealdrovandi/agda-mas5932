@@ -10,6 +10,7 @@ module logic.negation where
 
 open import level
 open import mltt.empty
+open import mltt.identity.core
 ```
 
 Double an triple negation, for convenience
@@ -40,3 +41,11 @@ one-to-three¬ : ∀ {ℓ} {A : Set ℓ} → ¬ A → ¬¬¬ A
 one-to-three¬ = λ x → ¬¬-intro x
 ```
 
+Negation of equality
+```agda
+_≢_ : ∀ {ℓ} {A : Set ℓ} → A → A → Set ℓ
+x ≢ y = ¬ (x ≡ y)
+
+≢-inv : ∀ {ℓ} {A : Set ℓ} {x y : A} → x ≢ y → y ≢ x
+≢-inv u = λ p → u (p ⁻¹)
+```
