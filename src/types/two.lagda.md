@@ -11,4 +11,5 @@ description: "Disjoint union (sum) of two unit types: the type with two canonica
 module types.two where
 
 open import types.two.core
+open import types.two.decidable
 ```
