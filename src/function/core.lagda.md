@@ -28,6 +28,10 @@ Definitions copied from the standard library
 id : ∀ {ℓ} {A : Set ℓ} → A → A
 id x = x
 
+-- explicit
+𝓲𝓭 : ∀ {ℓ} (A : Set ℓ) → A → A
+𝓲𝓭 A = λ z → z
+
 -- dependent composition
 infixr 9 _∘_
 _∘_ : ∀ {ℓ ℓ' ℓ''} {A : Set ℓ} {E : A → Set ℓ'} {K : {x : A} → E x → Set ℓ''} →
