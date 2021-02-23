@@ -11,8 +11,8 @@ description: "Disjoint union (sum) of two unit types: the type with two canonica
 module types.two where
 
 open import level
-open import mltt.unit
 open import mltt.sum
+open import mltt.unit
 ```
 
 ```agda
