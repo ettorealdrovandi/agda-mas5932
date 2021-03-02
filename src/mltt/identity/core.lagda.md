@@ -10,7 +10,9 @@ description: "A minimal Type Theory in Martin-Löf style: Identity types"
 1. [Path induction](#pathinduction)
    1. [Pauling-Mohring theorem](#paulin-mohring)
 1. [Transport](#transport)
-1. [Applicative](#ap)
+1. [Applicative](#appl)
+   1. [Non dependent](#ap)
+   1. [Dependent](#apd)
 1. [Inversion of identifications](#inversion)
 1. [Composition of identifications](#composition)
 1. [Reasoning with equality](#reasoning)
@@ -117,7 +119,9 @@ transport-agreement P refl = idp (id)
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 ---
 
-### Applicative {#ap}
+### Applicative {#appl}
+
+#### Non dependent {#ap}
 
 ```agda
 ap : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {x y : A} (f : A → B) → 
@@ -135,6 +139,19 @@ ap𝕁 {ℓ} {ℓ'} {A} {B} {x} {y} f p = 𝕁 D d x y p where
 ap-agreement : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {x y : A} (f : A → B) (p : x ≡ y) → ap f p ≡ ap𝕁 f p
 ap-agreement f refl = idp refl
 ```
+
+#### Dependent {#apd}
+
+```agda
+apd' : ∀ {ℓ ℓ'} {A : Set ℓ} (P : A → Set ℓ') (f : (x : A) → P x) {x y : A} → 
+      (p : x ≡ y) → transport P p (f x) ≡ f y
+apd' P f {x} refl = idp (f x)
+
+apd : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} (f : (x : A) → P x) {x y : A} → 
+      (p : x ≡ y) → transport P p (f x) ≡ f y
+apd f {x} refl = idp (f x)
+```
+
 
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 ---
