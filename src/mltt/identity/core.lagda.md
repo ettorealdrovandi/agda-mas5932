@@ -150,6 +150,21 @@ apd' P f {x} refl = idp (f x)
 apd : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} (f : (x : A) → P x) {x y : A} → 
       (p : x ≡ y) → transport P p (f x) ≡ f y
 apd f {x} refl = idp (f x)
+
+apd𝕁 : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} (f : (x : A) → P x) {x y : A} → 
+      (p : x ≡ y) → transport P p (f x) ≡ f y
+apd𝕁 {ℓ} {ℓ'} {A} {P} f {x} {y} p = 𝕁 D d x y p
+  where
+    D : (x y : A) → x ≡ y → Set ℓ'
+    D x y p = transport P p (f x) ≡ f y
+
+    d : (x : A) → D x x refl
+    d = λ x → refl
+
+apd-agreement : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} 
+                (f : (x : A) → P x) {x y : A} (p : x ≡ y) →
+                apd f p ≡ apd𝕁 f p
+apd-agreement f {x} refl = idp (idp (f x))
 ```
 
 
