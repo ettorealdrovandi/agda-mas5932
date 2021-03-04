@@ -9,7 +9,8 @@ description: "Interface"
 
 module function where
 
-open import function.core             public
-open import function.general-notation public
-open import function.pointwise        public
+open import function.core                public
+open import function.general-notation    public
+open import function.pointwise           public
+open import function.homotopyequivalence public
 ```
