@@ -60,6 +60,8 @@ module ≅-lemmas where
   refl≅ : ∀ {ℓ} {A : Set ℓ} → A ≅ A
   refl≅ = hoeq (λ z → z) (λ z → z) (λ x → refl) (λ x → refl)
 
+  ≅-id = refl≅ 
+
   ≡→≅ : ∀ {ℓ} {A B : Set ℓ} → A ≡ B → A ≅ B
   ≡→≅ refl = refl≅
 
