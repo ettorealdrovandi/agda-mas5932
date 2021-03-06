@@ -20,7 +20,7 @@ module types.naturals.order.core where
 open import level
 open import mltt.identity.core
 open import mltt.empty
-open import mltt.sum renaming (_+_ to _⊎_)
+open import mltt.sum
 open import types.naturals.core
 ```
 
@@ -69,7 +69,7 @@ unique-≤-inf {zero} p = refl
 ≤-split : ∀ {m n} → m ≤ suc n → (m ≤ n) ⊎ (m ≡ suc n)
 ≤-split {zero} {n} p = inl z≤n
 ≤-split {suc m} {zero} p = inr (ap suc (unique-≤-inf (≤-lc-suc p))) 
-≤-split {suc m} {suc n} p = +recursion (λ z → inl (s≤s z)) 
+≤-split {suc m} {suc n} p = ⊎-recursion (λ z → inl (s≤s z)) 
                                        (λ x → inr (ap suc x)) 
                                        ((≤-split (≤-lc-suc p)))
 ```

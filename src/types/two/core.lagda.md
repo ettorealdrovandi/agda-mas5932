@@ -17,7 +17,7 @@ open import mltt.unit
 
 ```agda
 𝟚 : Set
-𝟚 = 𝟙 + 𝟙
+𝟚 = 𝟙 ⊎ 𝟙
 -----
 pattern ₀ = inl *
 pattern ₁ = inr *
@@ -33,7 +33,7 @@ pattern ₁ = inr *
 
 
 𝟚-induction' : ∀ {ℓ} (P : 𝟚 → Set ℓ) → P ₀ → P ₁ → (i : 𝟚) → P i
-𝟚-induction' P p₀ p₁ = +induction P 
+𝟚-induction' P p₀ p₁ = ⊎-induction P 
                            (𝟙-induction (λ x → P (inl x)) p₀) 
                            (𝟙-induction (λ x → P (inr x)) p₁) 
 

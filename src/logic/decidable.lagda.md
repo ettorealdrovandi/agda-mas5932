@@ -17,7 +17,7 @@ open import mltt.identity.core
 
 ```agda
 decidable : ∀ {ℓ} → Set ℓ → Set ℓ
-decidable A = A + ¬ A
+decidable A = A ⊎ ¬ A
 
 decidable-equality : ∀ {ℓ} → Set ℓ → Set ℓ
 decidable-equality A = (x y : A) → decidable (x ≡ y)
@@ -50,8 +50,8 @@ inl-is-not-inr : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'}
                           inl a ≢ inr b
 inl-is-not-inr {ℓ} {ℓ'} {A} {B} {a} {b} p = one-is-not-zero q
   where
-    f : A + B → Set
-    f = +recursion (λ _ → 𝟙) (λ _ → 𝟘)
+    f : A ⊎ B → Set
+    f = ⊎-recursion (λ _ → 𝟙) (λ _ → 𝟘)
 
     q : 𝟙 ≡ 𝟘
     q = ap f p
