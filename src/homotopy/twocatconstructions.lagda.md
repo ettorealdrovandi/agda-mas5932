@@ -8,5 +8,7 @@ description: "Basic 2-categorical constructions: interface"
 
 module homotopy.twocatconstructions where
 
-open import homotopy.twocatconstructions.core public
+open import homotopy.twocatconstructions.core        public
+open import homotopy.twocatconstructions.pathlib     public
+open import homotopy.twocatconstructions.interchange public
 ```
