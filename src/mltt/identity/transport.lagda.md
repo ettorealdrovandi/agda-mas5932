@@ -47,8 +47,8 @@ module transport-lemmas where
   transport-cov' refl = refl
 
   -- compatibility with identifications of path
-  transport≡ : {x y : A} {p q : x ≡ y} (α : p ≡ q) {u : P x} →
-              transport P p u ≡ transport P q u
+  transport≡ : {x y : A} {p q : x ≡ y} (α : p ≡ q) 
+               {u : P x} → transport P p u ≡ transport P q u
   transport≡ refl = refl
 ```
 
