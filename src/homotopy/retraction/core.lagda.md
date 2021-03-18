@@ -29,12 +29,12 @@ record _◅_ {ℓ ℓ'} (A : Set ℓ) (B : Set ℓ') : Set (ℓ ⊔ ℓ') where
   field
     retr : B → A
     sect : A → B
-    h : retr ∘′ sect ~ id
+    homot : retr ∘′ sect ~ id
 
 ◅-struct-iso : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} →
                (A ◅ B) ≅ (Σ[ r ∈ (B → A) ] (has-sect r))
-◅-struct-iso = record { to = λ { record { retr = r ; sect = s ; h = h } → r , s , h}
-                      ; from = λ { (r , s , h) → record { retr = r ; sect = s ; h = h }}
+◅-struct-iso = record { to = λ { record { retr = r ; sect = s ; homot = h } → r , s , h}
+                      ; from = λ { (r , s , h) → record { retr = r ; sect = s ; homot = h }}
                       ; ε = λ _ → refl
                       ; η = λ _ → refl }
 ```
@@ -43,18 +43,18 @@ Name the projectors for compatibility
 
 ```agda
 retract : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} → (A ◅ B) → (B → A)
-retract record { retr = r ; sect = s ; h = h } = r
+retract record { retr = r ; sect = s ; homot = h } = r
 
 section : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} → (A ◅ B) → (A → B)
-section record { retr = r ; sect = s ; h = h } = s
+section record { retr = r ; sect = s ; homot = h } = s
 
 retract-homotopy : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} 
                    (ρ : A ◅ B) → (retract ρ) ∘′ (section ρ) ~ id
-retract-homotopy record { retr = r ; sect = s ; h = h } = h
+retract-homotopy record { retr = r ; sect = s ; homot = h } = h
 
 retract-has-sect : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} 
                    (ρ : A ◅ B) → has-sect (retract ρ)
-retract-has-sect record { retr = r ; sect = s ; h = h } = s , h
+retract-has-sect record { retr = r ; sect = s ; homot = h } = s , h
 ```
 
 ---
@@ -63,12 +63,12 @@ retract-has-sect record { retr = r ; sect = s ; h = h } = s , h
 module ◅-lemmas where
 
   ◅-id : ∀ {ℓ} {A : Set ℓ} → (A ◅ A)
-  ◅-id = record { retr = id ; sect = id ; h = λ _ → refl }
+  ◅-id = record { retr = id ; sect = id ; homot = λ _ → refl }
 
   _◅◾_ : ∀ {ℓ ℓ' ℓ''} {A : Set ℓ} {B : Set ℓ'} {C : Set ℓ''} → 
          A ◅ B → B ◅ C → A ◅ C
-  record { retr = r ; sect = s ; h = h } ◅◾ record { retr = r₁ ; sect = s₁ ; h = h₁ } =
-    record { retr = r ∘′ r₁ ; sect = s₁ ∘′ s ; h = h₂ }
+  record { retr = r ; sect = s ; homot = h } ◅◾ record { retr = r₁ ; sect = s₁ ; homot = h₁ } =
+    record { retr = r ∘′ r₁ ; sect = s₁ ∘′ s ; homot = h₂ }
        where
          open ~-lemmas
          h₂ : ∀ x → r (r₁ (s₁ (s x))) ≡ x
@@ -149,7 +149,7 @@ record _◅→_  {ℓ ℓ' ν ν' : Level} {A : Set ℓ} {B : Set ℓ'} {X : Set
        s = sect φ
 
        rs : r ∘′ s ~ id
-       rs = h φ
+       rs = homot φ
 
        t : Y → X
        t = retr ψ
@@ -158,7 +158,7 @@ record _◅→_  {ℓ ℓ' ν ν' : Level} {A : Set ℓ} {B : Set ℓ'} {X : Set
        u = sect ψ
          
        tu : t ∘′ u ~ id
-       tu  = h ψ
+       tu  = homot ψ
 
        field
          L : g ∘′ s ~ u ∘′ f
