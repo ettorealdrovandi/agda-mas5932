@@ -13,6 +13,7 @@ open import mltt
 open import types.naturals.core
 open import types.naturals.order
 open import homotopy.retraction
+open import function.homotopyequivalence
 open import hlevels.core
 
 open ≡-Reasoning
@@ -84,6 +85,15 @@ hlevel-retract {n = suc n} rAB is x y = hlevel-retract ρ (is (s x) (s y))
         s' = ap s
         h' : r' ∘′ s' ~ id
         h' refl = (linv (h x) ⁻¹) ⁻¹
+```
+
+Similarly, for isomorphisms or homotopy equivalences:
+
+```agda
+hlevel-iso : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {n : ℕ} →
+             A ≅ B → A isofhlevel n → B isofhlevel n
+hlevel-iso {n = n} (hoeq to from ε η) hA =
+           hlevel-retract (record { retr = to ; sect = from ; homot = ε }) hA
 ```
 
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
