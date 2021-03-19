@@ -91,9 +91,9 @@ Similarly, for isomorphisms or homotopy equivalences:
 
 ```agda
 hlevel-iso : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {n : ℕ} →
-             A ≅ B → A isofhlevel n → B isofhlevel n
-hlevel-iso {n = n} (hoeq to from ε η) hA =
-           hlevel-retract (record { retr = to ; sect = from ; homot = ε }) hA
+             A ≅ B → B isofhlevel n → A isofhlevel n
+hlevel-iso {n = n} (hoeq to from ε η) hB =
+           hlevel-retract (record { retr = from ; sect = to ; homot = η }) hB
 ```
 
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
