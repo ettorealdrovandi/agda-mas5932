@@ -20,7 +20,7 @@ open ◾-lemmas
 
 ### h Levels
 
-It is conveniente to have both names `h` and `_isofhlevel_`
+It is convenient to have both names `h` and `_isofhlevel_`
 ```agda
 hlevel : ∀ {ℓ} → ℕ → Set ℓ → Set ℓ
 hlevel zero A = Σ A (λ c → (a : A) → c ≡ a)
