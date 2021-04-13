@@ -3,6 +3,15 @@ title: "h-Levels: Core"
 description: "Voevodsky's notion of h-levels of a type. Main definitions"
 ---
 
+### Contents (#top)
+
+1. [h Levels](#hlevels)
+1. [Singletons, Propositions, and Sets](#singl-props-sets)
+1. [Propositions are of h-level 1](#props-h1)
+1. [Sets are of h-level 2](#sets-h2)
+
+--------------------------------------------------
+
 ```agda
 {-# OPTIONS --without-K --safe --exact-split #-}
 
@@ -18,7 +27,7 @@ open ≡-Reasoning
 open ◾-lemmas
 ```
 
-### h Levels
+### h Levels {#hlevels}
 
 It is convenient to have both names `h` and `_isofhlevel_`
 ```agda
@@ -30,7 +39,7 @@ _isofhlevel_ : ∀{ℓ} → Set ℓ → ℕ → Set ℓ
 A isofhlevel n = hlevel n A
 ```
 
-### Singletons, Propositions, and Sets
+### Singletons, Propositions, and Sets {#singl-props-sets}
 
 ```agda
 iscontr isContr is-contr isSingleton is-singleton : ∀ {ℓ} → Set ℓ → Set ℓ
@@ -115,7 +124,7 @@ prop→set {ℓ} {A} is x y p q = p                   ≡⟨ linv (g {x} x) ⁻�
         open transport-in-paths
 ```
 
-### Propositions are of h-level 1
+### Propositions are of h-level 1 {#props-h1}
 
 ```agda
 prop→hlevel1 : ∀ {ℓ} {A : Set ℓ} → is-prop A → A isofhlevel 1
@@ -128,7 +137,7 @@ hlevel1→prop : ∀ {ℓ} {A : Set ℓ} → A isofhlevel 1 → is-prop A
 hlevel1→prop {ℓ} {A} is = λ x y → center {A = (x ≡ y)} (is x y)
 ```
 
-### Sets are of h-level 2
+### Sets are of h-level 2 {#sets-h2}
 
 ```agda
 set→hlevel2 : ∀ {ℓ} {A : Set ℓ} → is-set A → A isofhlevel 2
@@ -138,3 +147,5 @@ hlevel2→set : ∀ {ℓ} {A : Set ℓ} → A isofhlevel 2 → is-set A
 hlevel2→set {ℓ} {A} is = λ x y → hlevel1→prop (is x y) 
 ```
 
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
