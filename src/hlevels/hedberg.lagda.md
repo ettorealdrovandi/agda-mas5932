@@ -7,7 +7,7 @@ description: "A proof of Hedberg's theorem"
 
 1. [Preliminary definitions](#prelims)
 1. [Hedberg's theorem](#hedberg)
-1. [Examples] (#examples)
+1. [Examples](#examples)
 
 --------------------------------------------------
 
