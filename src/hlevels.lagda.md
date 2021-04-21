@@ -13,6 +13,7 @@ description: "Voevodsky's notion of h-level. Interface"
 module hlevels where
 
 open import hlevels.core    public
+open import hlevels.sets    public
 open import hlevels.closure public
 ```
 
