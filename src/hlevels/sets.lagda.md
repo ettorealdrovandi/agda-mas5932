@@ -31,7 +31,7 @@ The empty type is a proposition (not completely trivial) and hence a set.
 𝟘-is-set : is-set 𝟘
 𝟘-is-set = prop→set 𝟘-is-prop
 ```
-We can give a direct proof of the lattef:
+We can give a direct proof of the latter:
 
 ```agda
 𝟘-is-set' : is-set 𝟘
