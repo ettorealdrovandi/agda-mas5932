@@ -34,24 +34,14 @@ define as a record:
 record Σ {ℓ ℓ'} (B : Set ℓ) (E : B → Set ℓ') : Set (ℓ ⊔ ℓ') where
   constructor _,_ 
   field
-    fst : B
-    snd : E fst
+    π₁ : B
+    π₂ : E π₁
 
 infixr 50 _,_
 
+open Σ public
+
 syntax Σ B (λ x → E) = Σ[ x ∈ B ] E
-```
-
-Define the projection independently of the field names in the record:
-
-```agda
--- projection to the base
-π₁ : ∀ {ℓ ℓ'} {B : Set ℓ} {E : B → Set ℓ'} → Σ B E  → B
-π₁ (b , e) = b
-
--- "projection" to the fiber
-π₂ : ∀ {ℓ ℓ'} {B : Set ℓ} {E : B → Set ℓ'} (t : Σ B E) → E (π₁ t)
-π₂ (b , e) = e
 ```
 
 #### Induction and recursion principles {#indrec}
