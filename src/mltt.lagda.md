@@ -27,7 +27,7 @@ module mltt where
 ### Universes {#universes}
 
 ```agda
-open import level
+open import level public
 ```
 
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
