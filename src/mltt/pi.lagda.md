@@ -15,7 +15,6 @@ description: "A minimal Type Theory in Martin-Löf style: Pi types"
 module mltt.pi where
 
 open import level
-open import mltt.sigma
 ```
 
 Π-types are built=in in Agda, with the notation ∀ (x : A) → E x
@@ -43,13 +42,4 @@ Tautological elimination rules:
 -- Same thing, but sometimes more convenient
 Π′-elim₁ : ∀ {ℓ ℓ'} {B : Set ℓ} {E : B → Set ℓ'} → Π′ B E → (b : B) → E b 
 Π′-elim₁ (dfun f) b = f b
-```
-
-
-```agda
--- This, and the mltt.sigma import above need to go
--- THey are here just for compatibility due to a call
--- in basichomotopy.lagda.md
-Γ : ∀ {ℓ ℓ'} {B : Set ℓ} {E : B → Set ℓ'} → Π B E → (B → Σ B E)
-Γ f b = b , f b
 ```
