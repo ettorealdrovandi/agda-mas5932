@@ -3,6 +3,13 @@ title: "h-Levels: Sets"
 description: "Examples of known types that are  propositions or sets"
 ---
 
+### Contents {#top}
+
+1. [The empty type](#empty)
+1. [The unit type](#unit)
+1. [Sum types](#sumtypes)
+1. [Σ-types](#sigma-types)
+   1. [Cartesian products](#cartesian)
 
 --------------------------------------------------
 
@@ -26,7 +33,7 @@ open ◾-lemmas
 open transport-lemmas
 ```
 
-### The empty type
+### The empty type {#empty}
 
 The empty type is a proposition (not completely trivial) and hence a set.
 
@@ -44,7 +51,7 @@ We can give a direct proof of the latter:
 𝟘-is-set' = λ x y p q → !𝟘 y
 ```
 
-### The unit type
+### The unit type {#unit}
 
 ```agda
 𝟙-is-contr : is-contr 𝟙
@@ -233,7 +240,9 @@ Simpler proof for the corresponding fact for propositions
 Σ-type-is-prop = Σ-type-isprop
 ```
 
-Cartesian product special case:
+#### Cartesian products {#cartesian}
+
+the Cartesian products are a special case:
 
 ```agda
 ×-isset : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} →
