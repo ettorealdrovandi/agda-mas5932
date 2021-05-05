@@ -13,6 +13,8 @@ module hlevels.sets where
 
 open import level
 open import mltt
+open import function.core
+open import function.homotopyequivalence
 open import hlevels.core
 
 
@@ -49,4 +51,28 @@ We can give a direct proof of the latter:
 
 𝟙-is-set : is-set 𝟙
 𝟙-is-set = prop→set 𝟙-is-prop
+```
+
+Contractible types are isomorphic to `𝟙`, so we can prove the
+"trivial" identity principle for `𝟙` from the HoTT book
+
+```agda
+iscontr-iso-𝟙 : ∀ {ℓ} {A : Set ℓ} → is-contr A → A ≅ 𝟙
+iscontr-iso-𝟙 is = hoeq (λ _ → *)
+                        (λ _ → center is)
+                        (λ { * → refl})
+                        (centrality is)
+
+Id𝟙-is-𝟙 : {x y : 𝟙} → (x ≡ y) ≅ 𝟙
+Id𝟙-is-𝟙 {x} {y} = iscontr-iso-𝟙 (is x y)
+  where
+    is : 𝟙 isofhlevel 1
+    is = prop→hlevel1 𝟙-is-prop
+
+
+Id𝟙-is-𝟙' : {x y : 𝟙} → (x ≡ y) ≅ 𝟙
+Id𝟙-is-𝟙' = record { to = λ _ → *
+                   ; from = λ _ → refl
+                   ; ε = λ { * → refl}
+                   ; η = λ { refl → refl}}
 ```
