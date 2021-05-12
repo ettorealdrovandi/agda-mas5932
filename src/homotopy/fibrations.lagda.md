@@ -24,7 +24,7 @@ We prove that this is the case in a minimal type theory: we show, mostly followi
 module homotopy.fibrations where
 
 open import mltt
-open import function.homotopyequivalence
+open import function
 
 open ≡-Reasoning
 open ◾-lemmas
@@ -177,3 +177,53 @@ PathΣ→PathOver : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} {u v : Σ 
 PathΣ→PathOver q = PathPair→PathOver ( (PathΣ→PathPair q) )
 ```
 
+### Homotopy fibers {#hfib}
+
+The homotopy fiber construction allows to replace any map with a fibration.
+
+```agda
+hfib : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} (f : A → B) (b : B) → Set (ℓ ⊔ ℓ')
+hfib f b = Σ[ a ∈ domain f ] ((f a) ≡ b)
+
+-- extracting the components
+hfib-pt : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {f : A → B} {b : B} → 
+                   hfib f b → A
+hfib-pt = π₁
+
+hfib-path : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {f : A → B} {b : B} → 
+            (u : hfib f b) → f (hfib-pt u) ≡ b
+hfib-path = π₂
+```
+
+Pointwise homotopies preserve homotopy fibers:
+
+```agda
+pointwise-homot-hfib-iso : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {f g : A → B} → 
+                         (f ~ g) → (b : B) → hfib f b ≅ hfib g b
+pointwise-homot-hfib-iso {ℓ} {ℓ'} {A} {B} {f} {g} h b = hoeq k k⁻¹ ε η
+
+  where
+    open import homotopy.twocatconstructions
+
+    k : hfib f b → hfib g b
+    k = λ { (a , p) → a , ((h a) ⁻¹ ◾ p)}
+
+    k⁻¹ : hfib g b → hfib f b
+    k⁻¹ (a , q) = a , ((h a) ◾ q)
+
+    η : k⁻¹ ∘′ k ~ id
+    η (a , p)  = ap (λ v → (a , v)) γ
+      where
+        γ : (h a ◾ (h a ⁻¹ ◾ p)) ≡ p
+        γ = (h a ◾ (h a ⁻¹ ◾ p)) ≡⟨ (assoc (h a) (h a ⁻¹) p ) ⁻¹ ⟩
+            ((h a ◾ h a ⁻¹) ◾ p) ≡⟨ rinv (h a) ◾ʳ p ⟩
+            p ∎
+        
+    ε : k ∘′ k⁻¹ ~ id
+    ε (a , q) = ap (λ v → (a , v)) γ
+      where
+        γ : (h a ⁻¹ ◾ (h a ◾ q)) ≡ q
+        γ = (h a ⁻¹ ◾ (h a ◾ q)) ≡⟨ ( assoc (h a ⁻¹) (h a) q ) ⁻¹ ⟩
+            ((h a ⁻¹ ◾ h a) ◾ q) ≡⟨ linv (h a) ◾ʳ q ⟩
+            q ∎
+```
