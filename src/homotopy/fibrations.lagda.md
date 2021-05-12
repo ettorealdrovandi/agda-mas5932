@@ -11,6 +11,7 @@ description: "Dependent types as fibrations"
    1. [PathPair](#pathpair)
    1. [PathOver](#pathover)
 
+1. [Homotopy fibers](#hfib)
 --------------------------------------------------
 
 One of the fundamental interpretations of HoTT is that type families, i.e. dependent types are interpreted as fibrations. In turn, the defining property of  a fibration in a homotopy theory is the lifting one with respect to certain class of maps, in particular paths.
