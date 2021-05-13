@@ -8,6 +8,8 @@ description: "Definition and main properties of retractions"
 1. [Retractions](#retractions)
 2. [Function retraction](#funretr)
 
+--------------------------------------------------
+
 ```agda
 {-# OPTIONS --without-K --safe #-}
 
