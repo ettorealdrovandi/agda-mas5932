@@ -10,4 +10,5 @@ description: "Interface"
 module homotopy.retraction where
 
 open import homotopy.retraction.core public
+open import homotopy.retraction.extra public
 ```
