@@ -123,10 +123,7 @@ module ≃j-lemmas where
   syntax ≃j-trans f g = f ≃◾≃j g
   -- ---------------------------
 
-  ≡→≃j : ∀ {ℓ} {A B : Set ℓ} → A ≡ B → A ≃j B
-  ≡→≃j refl = refl-≃j
-
-module ≃-Reasoning where
+module ≃j-Reasoning where
   
   open ≃j-lemmas
 
@@ -144,3 +141,28 @@ module ≃-Reasoning where
   _≃j∎ : ∀ {ℓ} (A : Set ℓ) → A ≃j A
   A ≃j∎ = ≃j-id {A = A}
 ```
+
+
+<!--
+**FIXME** This should be elsewhere
+-->
+
+Equality is a weak equivalence. This is one direction (the easy one)
+of the correspondence underlying the univalence principle.
+
+```agda
+transport-is-≃j : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} {x y : A}
+                  (p : x ≡ y) → is-eq (transport P p)
+transport-is-≃j refl = iseq-id
+
+≡→≃j : ∀ {ℓ} {A B : Set ℓ} → A ≡ B → A ≃j B
+≡→≃j p = (Id→Fun p) , (transport-is-≃j p)
+
+≡→≃j' : ∀ {ℓ} {A B : Set ℓ} → A ≡ B → A ≃j B
+≡→≃j' refl = refl-≃j
+  where
+    open ≃j-lemmas
+```
+
+<p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
+---
