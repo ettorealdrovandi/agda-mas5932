@@ -186,6 +186,8 @@ The homotopy fiber construction allows to replace any map with a fibration.
 hfib : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} (f : A → B) (b : B) → Set (ℓ ⊔ ℓ')
 hfib f b = Σ[ a ∈ domain f ] ((f a) ≡ b)
 
+syntax hfib f b = f ⁻¹ b
+
 -- extracting the components
 hfib-pt : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {f : A → B} {b : B} → 
                    hfib f b → A
