@@ -3,6 +3,13 @@ title: "Joyal"
 description: "Joyal's weak equivalences are the bi-invertible maps"
 ---
 
+### Contents {#top}
+
+1. [Joyal weak equivalences](#bi-inv)
+1. [Joyal weak equivalences are isomorphisms](#eq-to-iso)
+1. [Identity is a weak equivalence](#id-is-eq)
+1. [Standard properties and reasoning](#eq-reason)
+
 --------------------------------------------------
 
 
