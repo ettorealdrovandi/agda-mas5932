@@ -9,6 +9,7 @@ description: "Voevodsky's definition via contractible homotopy fibers"
 1. [Weak equivalences are isomorphisms](#weq-to-iso)
 1. [Identity is a weak equivalence](#idweq)
 1. [Isomorphisms are weak equivalences](#iso-to-weq)
+1. [Standard properties and reasoning](#eq-reason)
 
 --------------------------------------------------
 
@@ -164,24 +165,67 @@ where the first arrow is due to `Lemma2` and the second to
 <p style="font-size: smaller; text-align: right">[top ⇑](#top)</p>
 ---
 
-<!--
-**FIXME** This should be elsewhere
--->
+
+### Standard properties and reasoning {#eq-reason}
+
+The type `A ≃ B` satisfies the standard equivalence relation
+properties. We use this to build a "Reasoning" module.
+
+**Note:** Transitivity is superseded and subsumed by the
+  "two-out-of-three" property, which is proved elsewhere in this
+  development.
 
 ```agda
 module ≃-lemmas where
 
+  open ≅-lemmas
+
   refl≃ : ∀ {ℓ} {A : Set ℓ} → A ≃ A
   refl≃ {ℓ} {A} = id , isweq-id
-    where
-
-  ≃-id = refl≃
 
   ≃-sym : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} → A ≃ B → B ≃ A
   ≃-sym {A = A} {B} = ≅→≃ ∘′ ≅-sym ∘′ (≃→≅ {A = A} {B})
+      
+  -- This is a parody of the UniMath proof
+  ≃-trans : ∀ {ℓ ℓ' ℓ''} {A : Set ℓ} {B : Set ℓ'} {C : Set ℓ''} →
+            A ≃ B → B ≃ C → A ≃ C
+  ≃-trans {A = A} {B} {C} (f , i) (g , j) = ≅→≃ ψφ
     where
-      open ≅-lemmas
+      φ : A ≅ B
+      φ = ≃→≅ (f , i)
+      ψ : B ≅ C
+      ψ = ≃→≅ (g , j)
+      ψφ : A ≅ C
+      ψφ = φ ≅◾ ψ
+
+  -- Syntax declarations
+  ≃-id = refl≃
+  syntax ≃-sym f = f ≃⁻¹
+  syntax ≃-trans f g = f ≃◾≃ g
+  -- ---------------------------
+
+module ≃-Reasoning where
+  
+  open ≃-lemmas
+
+  infix 3 _≃∎
+  infixr 2 _≃⟨_⟩_
+  infix 1 begin≃_
+
+  begin≃_ : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} →
+            A ≃ B → A ≃ B
+  begin≃ p = p
+  
+  _≃⟨_⟩_ : ∀ {ℓ ℓ' ℓ''} (A : Set ℓ) {B : Set ℓ'} {C : Set ℓ''} → A ≃ B → B ≃ C → A ≃ C
+  A ≃⟨ e ⟩ f = e ≃◾≃ f
+
+  _≃∎ : ∀ {ℓ} (A : Set ℓ) → A ≃ A
+  A ≃∎ = ≃-id {A = A}
 ```
+
+<!--
+**FIXME** This should be elsewhere
+-->
 
 Equality is a weak equivalence. This is one direction (the easy one)
 of the correspondence underlying the univalence principle.
