@@ -70,7 +70,7 @@ module _ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} where
       δ : g ~ h
       δ = ((η ~∘ g) ~⁻¹) ~◾~ ( h ∘~ ε )
 
-   -- This is for compatibility with a previous version of this development
+  -- This is for compatibility with a previous version of this development
   iseq→qinv : (f : A → B) → iseq f → qinv f
   iseq→qinv f is = record { inv = from (≃j→≅ (f , is))
                           ; ε = ε (≃j→≅ (f , is))
