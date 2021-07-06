@@ -88,12 +88,12 @@ module _ {ℓ ℓ'}{A : Set ℓ}{B : Set ℓ'} where
   ≅→≃h : A ≅ B → A ≃h B
   π₁ (≅→≃h (hoeq f g ε η)) = f
   π₁ (π₂ (≅→≃h (hoeq f g ε η))) = g
-  π₁ (π₂ (π₂ (≅→≃h (hoeq f g ε η)))) = λ y → f (g y) ≡⟨ ε (f (g y)) ⁻¹ ⟩
-                                                f (g (f (g y))) ≡⟨ ap f (η (g y)) ⟩
-                                                f (g y) ≡⟨ ε y ⟩
-                                                y ∎
+  π₁ (π₂ (π₂ (≅→≃h (hoeq f g ε η)))) y = f (g y) ≡⟨ ε (f (g y)) ⁻¹ ⟩
+                                         f (g (f (g y))) ≡⟨ ap f (η (g y)) ⟩
+                                         f (g y) ≡⟨ ε y ⟩
+                                         y ∎
   π₁ (π₂ (π₂ (π₂ (≅→≃h (hoeq f g ε η))))) = η
-  π₂ (π₂ (π₂ (π₂ (≅→≃h (hoeq f g ε η))))) = λ x → ap f (η x) ≡⟨ refl ⟩
+  π₂ (π₂ (π₂ (π₂ (≅→≃h (hoeq f g ε η))))) x = ap f (η x) ≡⟨ refl ⟩
                         refl ◾ ap f (η x) ≡⟨ ap (_◾ (ap f (η x)) )  ( linv (ε (f (g (f x) ) )) ) ⁻¹   ⟩
                         ((ε (f (g (f x) ) )) ⁻¹ ◾ ε (f (g (f x) ) )) ◾ ap f (η x) ≡⟨ assoc ((ε (f (g (f x) ) )) ⁻¹)  (ε (f (g (f x) ) ))  (ap f (η x))  ⟩
                         (ε (f (g (f x) ) )) ⁻¹ ◾ ( ε (f (g (f x) ) ) ◾ ap f (η x)) ≡⟨ ap ( (ε (f (g (f x))) ⁻¹) ◾_ ) (lem1 x) ⟩
