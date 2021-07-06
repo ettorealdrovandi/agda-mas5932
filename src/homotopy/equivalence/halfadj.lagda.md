@@ -117,9 +117,15 @@ module _ {ℓ ℓ'}{A : Set ℓ}{B : Set ℓ'} where
                                                                    ap (λ x₁ → f (g (f x₁))) (η x) ≡⟨ ap∘ (g ∘′ f) f (η x) ⟩
                                                                    ap f (ap (g ∘′ f) (η x)) ≡⟨ ap2 f ((natη η {x}) ⁻¹) ⟩
                                                                    ap f (η (g (f x))) ∎ 
-                              ε̃ = π₁ (π₂ (π₂ (≅→≃h (hoeq f g ε η)))) 
                               lem3 = λ x → (ap f (η (g (f x))) ◾ ε (f x)) ≡⟨ ap ((ap f (η (g (f x)))) ◾_ ) (ru (ε (f x))) ⁻¹ ⟩
                                            (ap f (η (g (f x))) ◾ (ε (f x) ◾ refl)) ∎
+                              -- New in 2.6.2:
+                              -- repeat the definition of π₁ (π₂ (π₂ (≅→≃h (hoeq f g ε η)))), which
+                              -- we cannot use directly, otherwise we get a problem with termination check
+                              ε̃ = λ y → f (g y) ≡⟨ ε (f (g y)) ⁻¹ ⟩
+                                        f (g (f (g y))) ≡⟨ ap f (η (g y)) ⟩
+                                        f (g y) ≡⟨ ε y ⟩
+                                        y ∎
 ```
 
 ### Identity is a weak equivalence {#id-is-eq}
